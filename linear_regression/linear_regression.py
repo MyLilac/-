@@ -3,7 +3,7 @@
 import numpy as np
 
 
-class LinerRegression(object):
+class LinearRegression(object):
 
     def __init__(self, learning_rate=0.01, max_iter=100, seed=None):
         np.random.seed(seed)
@@ -19,9 +19,6 @@ class LinerRegression(object):
         for i in range(self.max_iter):
             self._train_step()
             self.loss_arr.append(self.loss())
-            # print('loss: \t{:.3}'.format(self.loss()))
-            # print('w: \t{:.3}'.format(self.w))
-            # print('b: \t{:.3}'.format(self.b))
 
     def _f(self, x, w, b):
         return x * w + b
@@ -36,13 +33,11 @@ class LinerRegression(object):
         if y_true is None or y_pred is None:
             y_true = self.y
             y_pred = self.predict(self.x)
-        return np.mean((y_true - y_pred)**2)
+        return np.mean((y_true - y_pred) ** 2)
 
     def _calc_gradient(self):
-
         d_w = np.mean((self.x * self.w + self.b - self.y) * self.x)
-        print(self.x * self.w )
-        d_b = np.mean(self.x * self.w + self.b - self.y)
+        d_b = np.mean((self.x * self.w + self.b - self.y) * 1)  # 这里乘1是截距项
         return d_w, d_b
 
     def _train_step(self):

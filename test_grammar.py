@@ -13,6 +13,10 @@ def f(x, w, b):
     return x * w + b
 
 
-x = [1.0, 2.0, 3.0]
-print(w)
-print(x * w)
+x = np.array([1.0, 2.0, 3.0])
+y = np.array([3.0, 2.0, 1.0])
+print(len(x))
+
+
+m =np.mean((y - x) ** 2)
+print(m)
